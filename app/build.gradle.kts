@@ -92,6 +92,12 @@ dependencies {
     // Hilt Navigation Compose for hiltViewModel
     implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
 
-    implementation("androidx.compose.foundation:foundation:1.6.0-beta02")
+    val accompanistVersion = "1.6.0-beta02"
+
+    implementation("androidx.compose.foundation:foundation:$accompanistVersion")
+
+    implementation("com.google.accompanist:accompanist-systemuicontroller:0.33.2-alpha")
+
+    implementation("com.google.accompanist:accompanist-webview:0.33.2-alpha")
 
 }
