@@ -5,8 +5,10 @@ import android.view.ViewGroup
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.expandIn
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkOut
 import androidx.compose.animation.slideIn
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideInVertically
@@ -49,8 +51,8 @@ fun ImageAnimationScreen() {
     ) {
         AnimatedVisibility(
             visible = showImage,
-            enter = slideInVertically(),
-            exit = slideOutVertically()
+            enter = expandIn(),
+            exit = shrinkOut()
         ) {
             Image(
                 painter = painterResource(id = R.drawable.jujutsu_kaisen),
