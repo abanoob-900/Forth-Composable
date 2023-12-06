@@ -31,49 +31,7 @@ import com.bob.forthcomposable.R
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen() {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Text(
-                        "Bob | WebView",
-                        color = Color.Black
-                    )
-                },
-                modifier = Modifier.background(
-                    color = Color(0xff0f9d58)
-                )
-            )
-        },
-        content = {
-            Surface {
-                Column {
-
-                    // Declare a string that contains a url
-                    val mUrl = "https://www.geeksforgeeks.org"
-
-                    // Adding a WebView inside AndroidView
-                    // with layout as full screen
-                    AndroidView(factory = {
-                        WebView(it).apply {
-                            layoutParams = ViewGroup.LayoutParams(
-                                ViewGroup.LayoutParams.MATCH_PARENT,
-                                ViewGroup.LayoutParams.MATCH_PARENT
-                            )
-                            webViewClient = WebViewClient()
-                            loadUrl(mUrl)
-                        }
-                    }, update = {
-                        it.loadUrl(mUrl)
-                    })
-
-                    val re = remember {
-
-                    }
-                }
-            }
-        }
-    )
+    ImageAnimationScreen()
 }
 
 @Preview(showBackground = true, showSystemUi = true)
