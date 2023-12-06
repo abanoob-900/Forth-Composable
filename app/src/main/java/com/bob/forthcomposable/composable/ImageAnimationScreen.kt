@@ -14,6 +14,7 @@ import androidx.compose.animation.shrinkOut
 import androidx.compose.animation.slideIn
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOut
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -36,6 +37,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import com.bob.forthcomposable.R
@@ -53,8 +55,8 @@ fun ImageAnimationScreen() {
     ) {
         AnimatedVisibility(
             visible = showImage,
-            enter = expandIn() + fadeIn(),
-            exit = shrinkOut() + fadeOut()
+            enter = slideIn { it -> IntOffset(-it.width, -it.height) },
+            exit = slideOut { it -> IntOffset(x = -it.width, y = -it.height) }
         ) {
             Image(
                 painter = painterResource(id = R.drawable.jujutsu_kaisen),
