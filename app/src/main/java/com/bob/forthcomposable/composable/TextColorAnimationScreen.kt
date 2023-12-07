@@ -4,15 +4,20 @@ import androidx.compose.animation.animateColor
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.InfiniteRepeatableSpec
 import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -43,13 +48,38 @@ fun TextColorAnimationScreen() {
         val infiniteTransition = rememberInfiniteTransition(label = "A")
         val color by infiniteTransition.animateColor(
             initialValue = Color.Yellow,
-            targetValue = Color.Blue,
+            targetValue = Color.Green,
+            animationSpec = InfiniteRepeatableSpec(
+                tween(4000),
+                repeatMode = RepeatMode.Reverse
+            ), label = "B"
+        )
+        val floatTransition by infiniteTransition.animateFloat(
+            initialValue = 64f,
+            targetValue = 280f,
             animationSpec = InfiniteRepeatableSpec(
                 tween(4000),
                 repeatMode = RepeatMode.Reverse
             ), label = "B"
         )
         ComposeTextColor(backgroundColor = color)
+        Spacer(modifier = Modifier.height(96.dp))
+        Box(
+            modifier = Modifier
+                .clip(RoundedCornerShape(16.dp))
+                .background(color = color)
+                .height(128.dp)
+                .width(floatTransition.dp)
+        ) {
+            Text(
+                text = "Bob",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight()
+                    .padding(16.dp),
+                textAlign = TextAlign.Center
+            )
+        }
     }
 }
 
