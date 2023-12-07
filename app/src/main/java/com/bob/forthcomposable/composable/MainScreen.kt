@@ -33,7 +33,8 @@ import com.bob.forthcomposable.R
 fun MainScreen() {
 //    ImageAnimationScreen()
 //    TextAnimationScreen()
-    CrossFadeAnimationScreen()
+//    CrossFadeAnimationScreen()
+    TextColorAnimationScreen()
 }
 
 @Preview(showBackground = true, showSystemUi = true)
