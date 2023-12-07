@@ -31,7 +31,9 @@ import com.bob.forthcomposable.R
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen() {
-    ImageAnimationScreen()
+//    ImageAnimationScreen()
+//    TextAnimationScreen()
+    CrossFadeAnimationScreen()
 }
 
 @Preview(showBackground = true, showSystemUi = true)
