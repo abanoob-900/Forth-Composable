@@ -1,11 +1,18 @@
 package com.bob.forthcomposable.composable
 
+import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.Crossfade
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.scaleIn
+import androidx.compose.animation.scaleOut
 import androidx.compose.animation.slideIn
 import androidx.compose.animation.slideOut
+import androidx.compose.animation.togetherWith
+import androidx.compose.animation.with
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -32,7 +39,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.bob.forthcomposable.R
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
+@OptIn(
+    ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class,
+    ExperimentalAnimationApi::class
+)
 @Composable
 fun CrossFadeAnimationScreen() {
     var showImage by remember { mutableStateOf(true) }
@@ -49,11 +59,13 @@ fun CrossFadeAnimationScreen() {
             Text(text = "Click Here")
         }
 
-        Crossfade(
+        AnimatedContent(
             targetState = showImage,
-            animationSpec = tween(300), label = "A"
+            transitionSpec = {
+                scaleIn(tween(2000)) + fadeIn() togetherWith scaleOut(tween(2000))
+            }, label = "A"
         ) {
-            when(it) {
+            when (it) {
                 true -> ComposeImage()
                 false -> ComposeHeader()
             }
